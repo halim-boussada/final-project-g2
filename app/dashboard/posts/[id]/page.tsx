@@ -18,13 +18,13 @@ export async function generateStaticParams(){
     (res) => res.json(),
   );
   return posts.map((post : Post )=>{
-    return post.id.toString()
+    return {id : post.id.toString()}
   })
 }
 
 export default async function postDetails({ params }: Props) {
   const { id } = await params;
-  const post = await fetch("https://dummyjson.com/posts/" + id).then(
+  const post = await fetch(`https://dummyjson.com/posts/${id}`).then(
     (res) => res.json(),
   );
   return (
